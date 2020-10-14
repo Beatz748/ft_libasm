@@ -5,19 +5,24 @@ section .text
 _ft_strcpy:
 	mov rax, 0
 	cmp rdi, 0
-	jz return_null
+	jz _return_null
 	cmp rsi, 0
-	jz return
+	jz _return
 	mov rdx, 0
 	mov rcx, 0
-	jmp circle
+	jmp _circle
 
-circle:
-	mov
+_circle:
+	mov dl, BYTE[rsi + rcx]
+	mov BYTE[rdi + rcx], dl
+	cmp dl, 0
+	jz _return
+	inc rcx
+	jmp _circle
 
-return:
-	mox rax, rdi
+_return:
+	mov rax, rdi
 	ret
 
-return_null:
+_return_null:
 	ret
