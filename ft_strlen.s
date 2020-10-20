@@ -5,14 +5,14 @@ section .text
 _ft_strlen:
 	mov rax, 0
 	cmp rdi, 0
-	jz return
-	jmp circle
+	jz _return
+	jmp _circle
 
-circle:
+_circle:
 	cmp BYTE[rdi + rax], 0
-	jz return
+	jz _return
 	inc rax
-	jmp circle
+	jmp _circle
 
-return:
+_return:
 	ret
