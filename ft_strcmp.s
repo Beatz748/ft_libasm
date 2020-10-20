@@ -2,24 +2,24 @@ section .text
 	global _ft_strcmp
 
 _ft_strcmp:
-	mov 	rax, 0
-	jmp		compa
+	mov		rax, 0
+	jmp		_comp
 
-compa:
-	mov		al, BYTE [rdi]	; get the least significant byte in rdi where is stock the value of the char
-	mov		bl, BYTE [rsi]	; get the least significant byte in rsi where is stock the value of the char
-	cmp		al, 0			; if we are not at the end of rdi (arg0)
-	je		exit
-	cmp		bl, 0			; if we are not at the end of rdi (arg1)
-	je		exit
-	cmp 	al, bl			; compare al and bl
-	jne 	exit
+_comp:
+	mov		al, BYTE [rdi]
+	mov		bl, BYTE [rsi]
+	cmp		al, 0
+	je		_exit
+	cmp		bl, 0
+	je		_exit
+	cmp 	al, bl
+	jne 	_exit
 	inc 	rdi
 	inc 	rsi
-	jmp 	compa
+	jmp 	_comp
 
-exit:
+_exit:
 	movzx	rax, al
-    movzx	rbx, bl
-    sub		rax, rbx
+	movzx	rbx, bl
+	sub		rax, rbx
 	ret
